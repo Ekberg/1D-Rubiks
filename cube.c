@@ -53,3 +53,11 @@ void __cube_transform_save(cube_t* cube, const char id, const char buffer[CUBE_S
 	strcpy(cube->data, buffer);
 	cube->sequence[cube->sequence_size++] = id;
 }
+
+int is_valid_cube_data(char* data) {
+	return strspn(data, "12345678") == (CUBE_SIZE - 1);
+}
+
+int is_valid_sequence(char* sequence) {
+	return strspn(sequence, "ABC") == strlen(sequence);
+}

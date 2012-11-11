@@ -66,4 +66,19 @@ void __cube_transform_save(cube_t* cube, const char id, const char buffer[CUBE_S
 //! \breif Alias for one of the transformation functions
 typedef void (*cube_transform_fn)(cube_t* cube);
 
+/** \breif Checks if a string is valid as cube data
+	
+	\param data string to be validated
+	\return Non-zero if data is valid, 0 otherwise
+	\sa cube_create
+**/
+int is_vaid_cube_data(char* data);
+
+/** \breif Checks if a string is a valid sequence of transformations
+
+	\param sequence string to be validated
+	\return Non-zero if data is valid, 0 otherwise
+**/
+int is_valid_sequence(char* sequence);
+
 #endif 
