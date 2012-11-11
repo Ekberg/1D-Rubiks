@@ -33,4 +33,37 @@ cube_t* cube_create(const char data[CUBE_SIZE]);
 **/
 void cube_free(cube_t* cube);
 
+/** \breif Switches the rows of the cube
+ 
+	\param cube cube to transform
+	\sa cube_transform_B, cube_transform_C
+**/
+void cube_transform_A(cube_t* cube);
+
+/** \breif Shifting the columns of the cube to the right
+ 
+	\param cube cube to transform
+	\sa cube_transform_A, cube_transform_C
+**/
+void cube_transform_B(cube_t* cube);
+
+/** \breif Rotating the central elements of the cube
+ 
+	\param cube cube to transform
+	\sa cube_transform_A, cube_transform_B
+**/
+void cube_transform_C(cube_t* cube);
+
+/** \breif Helper function for cube transformations
+	
+	\param cube cube to transform
+	\param id which transformation that have been used
+	\param buffer new data for the cube after transformation
+	\sa cube_transform_A, cube_transform_B, cube_transform_C
+**/
+void __cube_transform_save(cube_t* cube, const char id, const char buffer[CUBE_SIZE]);
+
+//! \breif Alias for one of the transformation functions
+typedef void (*cube_transform_fn)(cube_t* cube);
+
 #endif 
