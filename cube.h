@@ -20,11 +20,19 @@ typedef struct {
 	that is returned must be deallocated with cube_free since it contains
 	another pointer.
 	
-	\param data initial data to 
-	\return Pointer to newly created cube.
+	\param data initial data to initialize the cube with
+	\return Pointer to newly created cube
 	\sa cube_free
 **/
 cube_t* cube_create(const char data[CUBE_SIZE]);
+
+/** \breif Creates a new cube with the same data as the source cube
+	
+	\param cube cube containing data to copy from
+	\return Pointer to the newly created cube
+	\sa cube_create, cube_free
+**/
+cube_t* cube_copy(const cube_t* cube);
 
 /** \breif Deallocates memory used by a cube
 
