@@ -31,5 +31,8 @@ int main(int argc, char **argv) {
 	cube_transform(cube, sequence);
 	
 	printf("%s\n", cube->data);
+	
+	cube_free(cube);
+	
 	return 0;
 }
