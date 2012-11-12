@@ -10,6 +10,13 @@ cube_t* cube_create(const char data[CUBE_SIZE]) {
 	return cube;
 }
 
+cube_t* cube_copy(const cube_t* cube) {
+	cube_t* new_cube = cube_create(cube->data);
+	new_cube->sequence_size = cube->sequence_size;
+	strcpy(new_cube->sequence, cube->sequence);
+	return new_cube;
+}
+
 void cube_free(cube_t* cube) {
 	free(cube->sequence);
 	free(cube);
