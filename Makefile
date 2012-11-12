@@ -1,5 +1,5 @@
 CC = clang
-FILES = main.c
+FILES = cube.c main.c
 OUTPUT = rubiks1d
 
 build: $(FILES)
