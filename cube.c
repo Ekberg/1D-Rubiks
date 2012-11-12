@@ -21,6 +21,7 @@ void cube_transform_A(cube_t* cube) {
 	for (i = 0; i < 8; i++) {
 		buffer[i] = cube->data[7 - i];
 	}
+	buffer[8] = '\0';
 	__cube_transform_save(cube, 'A', buffer);
 }
 
@@ -33,6 +34,7 @@ void cube_transform_B(cube_t* cube) {
 	}
 	buffer[0] = cube->data[3];
 	buffer[7] = cube->data[4];
+	buffer[8] = '\0';
 	__cube_transform_save(cube, 'B', buffer);
 }
 
@@ -46,6 +48,7 @@ void cube_transform_C(cube_t* cube) {
 	buffer[2] = cube->data[1];
 	buffer[5] = cube->data[2];
 	buffer[6] = cube->data[5];
+	buffer[8] = '\0';
 	__cube_transform_save(cube, 'C', buffer);
 }
 
