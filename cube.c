@@ -49,6 +49,24 @@ void cube_transform_C(cube_t* cube) {
 	__cube_transform_save(cube, 'C', buffer);
 }
 
+void cube_transform(cube_t* cube, const char* sequence) {
+	char transform;
+	int i = 0;
+	while ((transform = sequence[i++]) != '\0') {	
+		switch (transform) {
+			case 'A':
+				cube_transform_A(cube);
+				break;
+			case 'B':
+				cube_transform_B(cube);
+				break;
+			case 'C':
+				cube_transform_C(cube);
+				break;
+		}
+	}
+}
+
 void __cube_transform_save(cube_t* cube, const char id, const char buffer[CUBE_SIZE]) {
 	strcpy(cube->data, buffer);
 	cube->sequence[cube->sequence_size++] = id;

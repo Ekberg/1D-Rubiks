@@ -54,6 +54,13 @@ void cube_transform_B(cube_t* cube);
 **/
 void cube_transform_C(cube_t* cube);
 
+/** \breif
+
+	\param
+	\sa
+**/
+void cube_transform(cube_t* cube, const char* sequence);
+
 /** \breif Helper function for cube transformations
 	
 	\param cube cube to transform
