@@ -80,7 +80,7 @@ typedef void (*cube_transform_fn)(cube_t* cube);
 	\return Non-zero if data is valid, 0 otherwise
 	\sa cube_create
 **/
-int is_vaid_cube_data(char* data);
+int is_valid_cube_data(char* data);
 
 /** \breif Checks if a string is a valid sequence of transformations
 
