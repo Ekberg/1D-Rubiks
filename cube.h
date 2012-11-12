@@ -54,10 +54,11 @@ void cube_transform_B(cube_t* cube);
 **/
 void cube_transform_C(cube_t* cube);
 
-/** \breif
+/** \breif Transforms a cube with multiple transformations
 
-	\param
-	\sa
+	\param cube cube to transform
+	\param sequence string of all transformations to perform i.e. "ABC"
+	\sa cube_transform_A, cube_transform_B, cube_transform_C
 **/
 void cube_transform(cube_t* cube, const char* sequence);
 
