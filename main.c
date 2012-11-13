@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include "cube.h"
 #include "brute.h"
@@ -7,6 +8,32 @@
 
 const char* PROGRAM_NAME;
 const int MAX_SEQUENCE_SIZE = 10;
+
+
+
+static void usage() {
+	printf("usage: %s [options] [initial cube] sequence|wanted cube\n", PROGRAM_NAME);
+	printf("Options:\n");
+	printf("  -h, --help\t\tPrint this message and quits.\n");
+	exit(1);
+}
+
+static void error(const char* message) {
+	fprintf(stderr, "%s: %s. See --help for usage.\n", PROGRAM_NAME, message);
+	exit(-1);
+}
+
+int is_option(const char* arg, const char short_option, const char* long_option) {
+	if (arg[0] == '-') {
+		if (arg[1] == short_option && strlen(arg) == 2) {
+			return 1;
+		}
+		if (arg[1] == '-' && strcmp(arg + 2, long_option) == 0) {
+			return 1;
+		}
+	}
+	return 0;
+}
 
 int main(int argc, char **argv) {
 	char* initial_cube;
@@ -26,8 +53,7 @@ int main(int argc, char **argv) {
 		
 		if (is_valid_sequence(*argv)) {
 			if (sequence) {
-				printf("Invalid argument, already got a sequence.\n");
-				return -1;
+				error("Invalid argument, already got a sequence");
 			}
 			sequence = *argv;
 		} else if (is_valid_cube_data(*argv)) {
@@ -36,12 +62,12 @@ int main(int argc, char **argv) {
 			} else if (!target_cube) {	
 				target_cube = *argv;
 			} else {
-				printf("Invalid argument, too many cube arguments.\n");
-				return -1;
+				error("Invalid argument, too many cube arguments");
 			}
+		} else if (is_option(*argv, 'h', "help")) {
+			usage();
 		} else {
-			printf("Invalid argument.\n");
-			return -1;
+			error("Invalid argument");
 		}
 	}
 	
@@ -53,8 +79,7 @@ int main(int argc, char **argv) {
 	}
 	
 	if (!sequence && !initial_cube && !target_cube) {
-		printf("No arguments given.\n");
-		return -1;
+		error("No arguments given");
 	}
 	
 	cube_t* cube = cube_create(initial_cube);
@@ -63,9 +88,7 @@ int main(int argc, char **argv) {
 		cube_transform(cube, sequence);
 		printf("%s\n", cube->data);
 	} else {
-		
 		brute_cube(cube, target_cube, &brute_all_unsorted_print);
-	
 	}
 	cube_free(cube);
 	
