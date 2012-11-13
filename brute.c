@@ -3,8 +3,10 @@
 #include "cube.h"
 #include "brute.h"
 
+extern int MAX_SEQUENCE_SIZE;
+
 void brute_cube(cube_t* cube, const char* wanted, brute_callback_fn callback) {
-	if (cube->sequence_size < 4) {
+	if (cube->sequence_size < MAX_SEQUENCE_SIZE) {
 		brute_one_iteration(cube, wanted, &cube_transform_A, callback);
 		brute_one_iteration(cube, wanted, &cube_transform_B, callback);
 		brute_one_iteration(cube, wanted, &cube_transform_C, callback);

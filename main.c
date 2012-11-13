@@ -6,6 +6,7 @@
 #define DEFAULT_CUBE "12345678"
 
 const char* PROGRAM_NAME;
+const int MAX_SEQUENCE_SIZE = 10;
 
 int main(int argc, char **argv) {
 	char* initial_cube;
