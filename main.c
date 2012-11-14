@@ -5,11 +5,10 @@
 #include "brute.h"
 
 #define DEFAULT_CUBE "12345678"
+#define SOLUTION_LIMIT 100
 
 const char* PROGRAM_NAME;
-const int MAX_SEQUENCE_SIZE = 10;
-
-
+const int MAX_SEQUENCE_SIZE = 15;
 
 static void usage() {
 	printf("usage: %s [options] [initial cube] sequence|wanted cube\n", PROGRAM_NAME);
@@ -88,7 +87,16 @@ int main(int argc, char **argv) {
 		cube_transform(cube, sequence);
 		printf("%s\n", cube->data);
 	} else {
-		brute_cube(cube, target_cube, &brute_all_unsorted_print);
+		
+		solutions_t* solutions = brute_solutions_create(SOLUTION_LIMIT);
+		
+		brute_cube(solutions, cube, target_cube);
+		
+		for(int i = 0; i < solutions->size; i++) {
+			printf("%s\n", solutions->array[i]->sequence);
+		}
+		
+		brute_solutions_free(solutions);
 	}
 	cube_free(cube);
 	
