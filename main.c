@@ -92,6 +92,8 @@ int main(int argc, char **argv) {
 		
 		brute_cube(solutions, cube, target_cube);
 		
+		brute_solutions_sort(solutions);
+		
 		for(int i = 0; i < solutions->size; i++) {
 			printf("%s\n", solutions->array[i]->sequence);
 		}

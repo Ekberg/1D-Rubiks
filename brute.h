@@ -50,4 +50,10 @@ void brute_solutions_free(solutions_t* solutions);
 **/
 void brute_solution_insert(solutions_t* solutions, cube_t* cube);
 
+/** \breif Sorts solutions in ascending order of sequence size
+
+	\param pointer to array which should be sorted
+**/
+void brute_solutions_sort(solutions_t* solutions);
+
 #endif

@@ -91,3 +91,16 @@ int is_valid_cube_data(char* data) {
 int is_valid_sequence(char* sequence) {
 	return strspn(sequence, "ABC") == strlen(sequence);
 }
+
+int cube_compare_sequence_size(const void* arg1, const void* arg2)  {
+	const cube_t* const *cube_1 = arg1;
+	const cube_t* const *cube_2 = arg2;
+	
+	if ((*cube_1)->sequence_size > (*cube_2)->sequence_size) {
+		return 1;
+	} else if ((*cube_1)->sequence_size < (*cube_2)->sequence_size) {
+		return -1;
+	} else {
+		return 0;
+	}
+}

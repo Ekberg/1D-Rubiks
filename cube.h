@@ -97,4 +97,15 @@ int is_valid_cube_data(char* data);
 **/
 int is_valid_sequence(char* sequence);
 
+/** \breif Compares two cube sequence sizes with each other
+	
+	Void-parameters is needed for qsort which uses this function. 
+	
+	\param arg1 pointer to one of the cubes
+	\param arg2 pointer to one of the cubes
+	\return 0, -1, 1 depending on relationship
+	\sa brute_solutions_sort
+**/
+int cube_compare_sequence_size(const void* arg1, const void* arg2);
+
 #endif 

@@ -56,3 +56,7 @@ void brute_solution_insert(solutions_t* solutions, cube_t* cube) {
 		solutions->array[solutions->size++] = cube;
 	}
 }
+
+void brute_solutions_sort(solutions_t* solutions) {
+	qsort(solutions->array, solutions->size, sizeof(cube_t*), cube_compare_sequence_size);
+}
