@@ -6,6 +6,8 @@ typedef struct {
 	cube_t** array;
 	size_t size;
 	size_t limit;
+	size_t done;
+	size_t max;
 } solutions_t;
 
 /** \breif Brute-force all solutions to transform a cube to the desired cube
@@ -55,5 +57,11 @@ void brute_solution_insert(solutions_t* solutions, cube_t* cube);
 	\param pointer to array which should be sorted
 **/
 void brute_solutions_sort(solutions_t* solutions);
+
+/** \breif Prints the current progress in percent
+
+	\param solutions which solutions that should be tracked
+**/
+void brute_progress(solutions_t* solutions);
 
 #endif
