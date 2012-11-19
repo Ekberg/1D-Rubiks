@@ -33,6 +33,7 @@ void brute_one_iteration(solutions_t* solutions, cube_t* cube, const char* wante
 }
 
 solutions_t* brute_solutions_create(const size_t limit) {
+	int i;
 	solutions_t* solutions = malloc(sizeof(solutions_t));
 	
 	solutions->array = calloc(limit, sizeof(cube_t*));
@@ -40,7 +41,7 @@ solutions_t* brute_solutions_create(const size_t limit) {
 	solutions->size  = 0;
 	solutions->done  = 0;
 	solutions->max   = 0;
-	for (int i = 0; i <= MAX_SEQUENCE_SIZE; i++) {
+	for (i = 0; i <= MAX_SEQUENCE_SIZE; i++) {
 		solutions->max += pow(3, i);
 	}
 	
