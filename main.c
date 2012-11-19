@@ -11,9 +11,14 @@ const char* PROGRAM_NAME;
 const int MAX_SEQUENCE_SIZE = 15;
 
 static void usage() {
-	printf("usage: %s [options] [initial cube] sequence|wanted cube\n", PROGRAM_NAME);
+	printf("usage: %s [options] [-l <limit>] [initial cube] sequence|wanted cube\n", PROGRAM_NAME);
 	printf("Options:\n");
 	printf("  -h, --help\t\tPrint this message and quits.\n");
+	
+	printf("  -b, --best\t\tOnly output the best solution.\n");
+	printf("  -a, --all\t\tOutput all correct solutions.\n");
+	printf("  -l, --limit\t\tLimit the output.\n");
+	
 	exit(1);
 }
 
@@ -24,7 +29,7 @@ static void error(const char* message) {
 
 int is_option(const char* arg, const char short_option, const char* long_option) {
 	if (arg[0] == '-') {
-		if (arg[1] == short_option && strlen(arg) == 2) {
+		if (arg[1] == short_option) {
 			return 1;
 		}
 		if (arg[1] == '-' && strcmp(arg + 2, long_option) == 0) {
@@ -38,6 +43,9 @@ int main(int argc, char **argv) {
 	char* initial_cube;
 	char* target_cube;
 	char* sequence;
+	
+	int i;
+	int output_limit = -1;
 	
 	if (argc) {
 		if (argv[0][0] == '.' && argv[0][1] == '/') {
@@ -65,6 +73,15 @@ int main(int argc, char **argv) {
 			}
 		} else if (is_option(*argv, 'h', "help")) {
 			usage();
+		} else if (is_option(*argv, 'l', "limit")) {
+			if ((output_limit = atoi(*++argv)) <= 0) {
+				output_limit = -1;
+			}
+			argc--;
+		} else if (is_option(*argv, 'b', "best")) {
+			output_limit = 1;
+		} else if (is_option(*argv, 'a', "all")) {
+			output_limit = -1;
 		} else {
 			error("Invalid argument");
 		}
@@ -94,7 +111,11 @@ int main(int argc, char **argv) {
 		
 		brute_solutions_sort(solutions);
 		
-		for(int i = 0; i < solutions->size; i++) {
+		if (output_limit < 0 || output_limit > solutions->size) {
+			output_limit = solutions->size;
+		}
+		
+		for(i = 0; i < output_limit; i++) {
 			printf("%s\n", solutions->array[i]->sequence);
 		}
 		
