@@ -40,9 +40,9 @@ int is_option(const char* arg, const char short_option, const char* long_option)
 }
 
 int main(int argc, char **argv) {
-	char* initial_cube;
-	char* target_cube;
-	char* sequence;
+	char* initial_cube = NULL;
+	char* target_cube = NULL;
+	char* sequence = NULL;
 	
 	int i;
 	int output_limit = -1;
