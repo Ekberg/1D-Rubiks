@@ -9,8 +9,6 @@ extern int MAX_SEQUENCE_SIZE;
 
 void brute_cube(solutions_t* solutions, cube_t* cube, const char* wanted) {
 	if (cube->sequence_size < MAX_SEQUENCE_SIZE) {
-		brute_progress(solutions);
-		
 		brute_one_iteration(solutions, cube, wanted, &cube_transform_A);
 		brute_one_iteration(solutions, cube, wanted, &cube_transform_B);
 		brute_one_iteration(solutions, cube, wanted, &cube_transform_C);
@@ -18,6 +16,8 @@ void brute_cube(solutions_t* solutions, cube_t* cube, const char* wanted) {
 }
 
 void brute_one_iteration(solutions_t* solutions, cube_t* cube, const char* wanted, cube_transform_fn transform) {
+	brute_progress(solutions);
+	
 	cube_t* new_cube = cube_copy(cube);
 	
 	transform(new_cube);
@@ -74,8 +74,8 @@ void brute_solutions_sort(solutions_t* solutions) {
 void brute_progress(solutions_t* solutions) {
 	float ratio;
 	int i;
-
-	if (solutions->done % (solutions->max / 100) != 0) {
+	
+	if (solutions->max >= 100 && (solutions->done % (solutions->max / 100)) != 0) {
 		return;
 	}
 	

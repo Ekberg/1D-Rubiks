@@ -6,9 +6,10 @@
 
 #define DEFAULT_CUBE "12345678"
 #define SOLUTION_LIMIT 100
+#define DEFAULT_SEQUENCE_SIZE 13
 
 const char* PROGRAM_NAME;
-const int MAX_SEQUENCE_SIZE = 15;
+unsigned int MAX_SEQUENCE_SIZE = DEFAULT_SEQUENCE_SIZE;
 
 static void usage() {
 	printf("usage: %s [options] [-l <limit>] [initial cube] sequence|wanted cube\n", PROGRAM_NAME);
@@ -18,6 +19,8 @@ static void usage() {
 	printf("  -b, --best\t\tOnly output the best solution.\n");
 	printf("  -a, --all\t\tOutput all correct solutions.\n");
 	printf("  -l, --limit\t\tLimit the output.\n");
+	
+	printf("  -s, --sequence\t\tSet the maximum sequence size.");
 	
 	exit(1);
 }
@@ -82,6 +85,11 @@ int main(int argc, char **argv) {
 			output_limit = 1;
 		} else if (is_option(*argv, 'a', "all")) {
 			output_limit = -1;
+		} else if (is_option(*argv, 's', "sequence")) {
+			if ((MAX_SEQUENCE_SIZE = atoi(*++argv)) <= 0) {
+				MAX_SEQUENCE_SIZE = DEFAULT_SEQUENCE_SIZE;
+			}
+			argc--;
 		} else {
 			error("Invalid argument");
 		}
