@@ -3,10 +3,10 @@ FILES = cube.c brute.c main.c
 OUTPUT = rubiks1d
 
 build: $(FILES)
-	$(CC) -lm -o $(OUTPUT) $(FILES)
+	$(CC) -o $(OUTPUT) $(FILES) -lm
 
 debug: $(FILES)
-	$(CC) -g -lm -o $(OUTPUT) $(FILES)
+	$(CC) -g -o $(OUTPUT) $(FILES) -lm
 
 clean:
 	rm -rf *.o *.dSYM $(OUTPUT)
